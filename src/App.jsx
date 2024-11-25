@@ -2,18 +2,24 @@ import Articles from "./components/Articles/Articles";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import Posts from "./components/Posts/Posts";
+import { useState } from "react";
 
 
 function App() {
+  let [isAuthentificated, setIsAuthenticated] = useState(false);
   return (
     <div>
-       <NavBar />
+      <NavBar isAuthentificated={isAuthentificated} setIsAuthenticated={setIsAuthenticated} />
 
-       <Posts />
+      {isAuthentificated === true && (
+        <>
+          <Posts />
 
-       <Articles /> 
+          <Articles />
+        </>
+      )}
 
-       <Footer />
+      <Footer />
     </div>
   );
 }
