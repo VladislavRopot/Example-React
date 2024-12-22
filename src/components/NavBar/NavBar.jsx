@@ -1,31 +1,19 @@
 import classes from './navbar.module.css';
 
-function Welcome(props) {
-    return <h2>Welcome {props.message}!</h2>
-}
 function NavBar(props) {
-    const login = () => {
-        props.setIsAuthenticated(true);
-    };
+
     const logout = () => {
-        props.setIsAuthenticated(false);
+        props.setUser(null);
     };
 
     return (
         <nav className={classes.navbar}>
-            <Welcome message={props.isAuthentificated === true ? 'User' : 'Anonim'} />
-
-            {props.isAuthentificated === true ? (
-                <>
+                    <h3>Welcome {props.user.firstName}!</h3>
                     <ul>
                         <li>Posts</li>
                         <li>Articles</li>
                     </ul>
-                    <button onClick={() => logout()}>Logout</button>
-                </>
-            ) : (
-                <button onClick={() => login()}>Login</button>
-            )}
+            <button onClick={() => logout()}>Logout</button>
         </nav>
     );
 }
