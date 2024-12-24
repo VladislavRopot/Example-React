@@ -3,6 +3,7 @@ import classes from './navbar.module.css';
 function NavBar(props) {
 
     const logout = () => {
+        console.log('Apeleaza acel API cand se face logout');
         props.setUser(null);
     };
 

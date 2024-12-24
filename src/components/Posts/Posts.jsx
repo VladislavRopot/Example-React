@@ -1,37 +1,25 @@
+import classes from "./posts.module.css"
+import { useEffect, useState } from "react";
 import Post from "../Post/Post";
+import { getPosts } from "./posts.api";
 
 function Posts() {
-    const items = [
-        {
-            id: 1,
-            title: 'Postare 1',
-            subTitle: 'Subtitle 1',
-            description: 'Descriere 1',
-            image: './logo512.png',
-            footerDescription: 'Descriere footer 1',
-        },
-        {
-            id: 2,
-            title: 'Postare 2',
-            subTitle: 'Subtitle 2',
-            description: 'Descriere 2',
-            image: './logo512.png',
-            footerDescription: 'Descriere footer 2 ',
-        },
-        {
-            id: 3,
-            title: 'Postare 3',
-            subTitle: 'Subtitle 3',
-            description: 'Descriere 3',
-            image: './logo512.png',
-            footerDescription: 'Descriere footer 3 ',
-        },
-    ];
+    const [items, setItems] = useState([]);
+  
+    useEffect(() => {
+        async function fetchPosts() {
+            const items = await getPosts();
+            setItems(items);
+        }
+        fetchPosts();
+    }, []);
     
     return (
-        <section>
+        <section className={classes.posts}>
             {
-                items.map (item => (
+                items.length === 0
+                ? <p>Postarile se incarca...</p>
+                : items.map (item => (
                     <Post  key={item.id} 
                     title={item.title} 
                     description={item.description} 

@@ -20,6 +20,7 @@ function Login(props) {
         if (FormValues.firstName === '' || FormValues.lastName === '') {
             alert('Fill in form data!');
         } else {
+            console.log('Apeleaza acel API cand se logheaza');
             props.setUser(FormValues);
         }
     };
