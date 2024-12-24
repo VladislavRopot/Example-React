@@ -1,4 +1,5 @@
-import Article from "../Article/Article";
+import Article from "../../../components/Article/Article";
+import ArticlesHeader from "../../../components/ArticlesHeader/ArticlesHeader";
 function Articles() {
     const items = [
         {
@@ -25,6 +26,7 @@ function Articles() {
     ];
     return (
         <section>
+            <ArticlesHeader />
             {
                 items.map(item => (
                     <Article key={item.id}

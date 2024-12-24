@@ -1,32 +1,23 @@
-import { useEffect, useState, createContext } from "react";  // Add createContext import
-import Articles from "./components/Articles/Articles";
 import Footer from "./components/Footer/Footer";
-import Login from "./components/Login/Login";
 import NavBar from "./components/NavBar/NavBar";
-import Posts from "./components/Posts/Posts";
-
-export const UserContext = createContext(null);
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Posts from "./components/Routes/Posts/Posts";
+import Articles from "./components/Routes/Articles/Articles";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    console.log('User a fost modificat!');
-  }, []);  // [] - lista de dependente, fara el va fi randat de fiecare data
-
   return (
-    <UserContext.Provider value={user}>
-      {user !== null ? (
-        <>
-          <NavBar user={user} setUser={setUser} />
-          <Posts />
-          <Articles />
-        </>
-      ) : (
-        <Login setUser={setUser} />
-      )}
+    <BrowserRouter>
+      <NavBar />
+
+      <Routes>
+        <Route path="/" element={<>Home page</>} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/articles" Component={Articles} />
+        <Route path="*" element={<>Error, Pagina nu a fost gasita!!!</>} /> //mereu trebuie sa fie ultima
+      </Routes>
+
       <Footer />
-    </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 

@@ -1,21 +1,14 @@
-import WelcomeMessage from '../WelcomeMessage/WelcomeMessage';
-import classes from './navbar.module.css';
+import { Link } from "react-router-dom";
 
-function NavBar(props) {
-
-    const logout = () => {
-        console.log('Apeleaza acel API cand se face logout');
-        props.setUser(null);
-    };
+function NavBar() {
 
     return (
-        <nav className={classes.navbar}>
-            <WelcomeMessage user={props.user}/>
+        <nav>
             <ul>
-                <li>Posts</li>
-                <li>Articles</li>
+                <li><Link to="/">Home</Link>/</li>
+                <li><Link to="/posts">Posts</Link>/</li>
+                <li><Link to="/articles">Articles</Link>/</li>
             </ul>
-            <button onClick={() => logout()}>Logout</button>
         </nav>
     );
 }
